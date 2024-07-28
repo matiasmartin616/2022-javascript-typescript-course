@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sesion4 JS</title>
+    </head>
+    <body>
+    <script type="module">
+        import * as crud from "./scripts/crud.js";
+
+        //estructura de datos
+        //array ok
+        //map - diccionario - 
+
+
+        const inigo ={
+            dni:"1111111H",
+            nombre: 'inigo',
+            apellido:'Indave'
+        };
+        const maria = {
+            dni:"2222222H",
+            nombre:'Maria',
+            apellido:'Perez'
+        }
+
+        const alumnos = new Map();
+        let asignaturas =  null;
+        const asignaturasTmp = ['Mates','Ingles','Mates','Programacion','Lengua','Frances']; //cuando se cree el conjunto omitira la repetida
+
+        /*
+        function crearAsignaturas(listaAsignaturasOrigen){
+            let conjunto = null;
+            if(listaAsignaturasOrigen){
+                conjunto = new Set();
+                for (const asig of listaAsignaturasOrigen){
+                    conjunto.add(asig);
+                }
+            }
+            return conjunto;
+        }
+        */
+        //Segunda version
+        function crearAsignaturasv2(listaAsignaturasOrigen){
+            let conjunto = null;
+            if(listaAsignaturasOrigen){
+                conjunto = new Set(listaAsignaturasOrigen);
+            }
+            return conjunto;
+        }
+
+
+        function listarAsignaturas(asigs){
+            if(asigs){
+                asigs.forEach((asig)=> console.log("ASIG:",asig));//se le da el valor asigs, para cada valor asig imprimir
+            }
+        }
+
+        function asignarAsignaturas(als,asigs){
+            for (const [dni, al] of als.entries()){
+                crud.asignarAsignaturasAlumno(al,asigs)
+            }
+        }
+        
+        //crear asignaturas
+        asignaturas = /*crearAsignaturas*/crearAsignaturasv2(asignaturasTmp);
+        if(asignaturas){
+            listarAsignaturas(asignaturas);
+        }
+        
+        alumnos.set("11111111H",inigo);
+        alumnos.set("22222222H",maria);
+        
+
+        crud.matricularAlumno(inigo,alumnos);
+        crud.matricularAlumno(maria,alumnos);
+
+        //buscar
+        //alumno existente
+        const alumnoBuscado = crud.buscarAlumno("2222222H",alumnos);
+        if(alumnoBuscado){
+            console.log(alumnoBuscado)
+        }
+        
+        
+        //dar de baja a maria
+        crud.darDeBajaAlumno("2222222H",alumnos);
+        //alumno no existente
+        const mariaAlumno = crud.buscarAlumno("2222222H",alumnos);
+        if (!mariaAlumno){
+            console.log("Funciona la operacion baja de alumno");
+        }
+        
+        //listar alumnos
+        asignarAsignaturas(alumnos,asignaturas);
+        crud.listarAlumnos(alumnos);
+
+        //Try catch
+        const numeros = [1,2]
+        try{
+            console.log(numeros[0]);
+        } catch(err){
+            console.log("Has intentado acceder a una posicion no existente", err.name)
+        }finally{
+            console.log("Fin del proceso")
+        }
+
+
+    </script>
+            
+    </body>
+</html>

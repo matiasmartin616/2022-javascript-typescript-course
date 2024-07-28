@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sesion3 JS</title>
+    </head>
+    <body>
+    <script type="module">
+        import {persist} from "./scripts/persist.js";
+
+        
+        const inigo = {
+            id:'11111111H',
+            nombre: 'Inigo',
+            apellido: 'Indave',
+            curso: 5,
+            nombreCompleto: function(){
+                //return this.nombre + "" + this.apellido;
+                return `${this.nombre} ${this.apellido}`//Backtick:permite introducir cadena facilmente 
+            }
+        }
+
+        const pedro = {
+            id:'33333333H',
+            nombre: 'Pedro',
+            apellido: 'Sanchez',
+            curso: 5,
+            notaFinal:null,
+            get nombreCompleto(){ 
+                return `${this.nombre} ${this.apellido}`//Backtick:permite introducir cadena facilmente 
+            },
+            set calificar(valor){
+                this.notaFinal = valor;
+            }
+        }
+
+        //inigo.nombreCompleto = inigo.nombreCompleto().toString();//Serializar la funcion
+
+        const maria = Object.assign({},inigo,{id:'22222222H',nombre:'Maria',apellido:'Larios'});
+        let alumnos = null;
+
+        /*
+        const maria = Object.assign({},inigo,{id:'22222222H',nombre:'Maria',apellido:'Larios'});
+        console.log(Object.values((maria)));
+        
+        //console.log(maria);
+        
+        Object.assign crea un nuevo objeto a partir del objeto 
+        plantilla fusionando propiedades anteriores con las nuevas 
+        que se le asignen.
+        
+/*
+        let inigoCadena = JSON.stringify(inigo);//JSON: JavaScript Object Notation
+        //Stringify: cadeniza el objeto inigo
+        console.log(inigoCadena); //{"id":"11111111H","nombre":"Inigo","apellido":"Indave","curso":5}
+        
+        
+        //persistir o almacenar info
+        //localstorage perdura en el almacenamiento a no ser que se borre
+        
+
+        localStorage.setItem("al_inigo",inigoCadena);
+        
+        localStorage.setItem("al_maria",JSON.stringify(maria));
+
+        
+        //sessionStorage:dura mientras la sesion esta abierta
+        
+
+        //Crear array que contenga a maria y juan y persistirlo
+        /* Asi lo hice yo, tambien es valido
+        const alumnos = [inigo,maria];
+        localStorage.setItem("alumnos",JSON.stringify(alumnos));
+        
+        
+
+        localStorage.setItem("alumnos",JSON.stringify(new Array(inigo,maria)));
+
+        
+        
+        [{"id":"11111111H","nombre":"Inigo","apellido":"Indave","curso":5},
+        {"id":"22222222H","nombre":"Maria","apellido":"Larios","curso":5}]
+        */
+/*
+        //Recuperar lo guardado
+        const inigo = JSON.parse(localStorage.getItem("al_inigo"));//parse: vuelve a convertir un objeto cadena en JS
+        if(inigo != null){
+            console.log(inigo.nombre);
+        }
+        
+        const maria = JSON.parse(localStorage.getItem("al_maria"));
+        if(maria != null){
+            console.log(maria.nombre);
+        }
+        
+        const alumnos = JSON.parse(localStorage.getItem("alumnos"));
+        if(alumnos != null){
+            alumnos.forEach((al)=> console.log(al));
+        }
+        */
+
+        //Importando los servicios desde SCRIPT
+        /*
+        persist.guardar("al_inigo",JSON.stringify(inigo));
+        console.log(JSON.parse(persist.recuperar("al_inigo")));
+
+        persist.guardar("al_maria",JSON.stringify(maria));
+        console.log(JSON.parse(persist.recuperar("al_maria")));
+
+        persist.guardar("alumnos",JSON.stringify(alumnos));
+        console.log(JSON.parse(persist.recuperar("alumnos")));
+
+        */
+        function guardarAlumnos(...data){//Agrupa todos los alumnos en data, basicamente crea un array con las nuevas entradas.
+            persist.guardar("alumnos",JSON.stringify(data));
+        }
+
+        function recuperarAlumnos(){
+            return JSON.parse(persist.recuperar("alumnos"));
+        }
+
+        function verAlumnos(lista){
+            lista.forEach((al) => console.log(al));
+        }
+
+        //Main program
+        guardarAlumnos(inigo,maria,pedro);//numero indetermindado de elementos separados por comas
+                                            //Estos objetos iran a parar al array llamado data
+                                            //que a su vez se guardaran con la variable alumnos
+        alumnos = recuperarAlumnos();
+
+        if(alumnos != null){
+            verAlumnos(alumnos);
+        }
+/*
+        console.log("Nombre Completo:", alumnos[0].nombreCompleto());
+        */
+
+
+        //getter y setter
+        console.log("Nombre completo:", inigo.nombreCompleto());
+        console.log("Nombre completo:", pedro.nombreCompleto);//le quito los parentesis porque estas accediendo a una propiedad
+        
+        pedro.calificar = 6.5//al ser un setter se hace con el igual.
+        console.log("La nota final de Pedro es:",pedro.notaFinal);
+
+    </script>
+            
+    </body>
+</html>

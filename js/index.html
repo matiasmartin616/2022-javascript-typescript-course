@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recordatorio JS</title>
+        <script type="module" src="./ask.js"></script>
+    </head>
+    <body>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+            Perspiciatis, rerum eum at deserunt totam, sit eveniet officiis
+            id sed fugit doloribus nam? Veniam molestias non accusamus 
+            doloremque perferendis odit praesentium.
+        </p>
+        <script type="module" >
+            import {biblio} from "./biblioteca.js"
+            import obtenerResultado from "./app.js";
+            import {pedirInfo} from "./ask.js";/*
+            //import * as proceso from "./app.js";
+
+            const dato = "Lunes";
+            // alert("Aviso de bienvenida");
+            //console.log(`<strong>Hola pisha. Hoy es ${dato}.</strong>`);
+            console.info("Control!!!");
+
+            let info = 90;
+            console.log(`Hemos hecho ${info} de curso.`);
+            /*
+            console.log(`La suma es ${proceso.sumar(10,5)}`);
+            console.log(`La resta es ${proceso.restar(10,5)}`);
+            *//*
+            const op = pedirInfo("Escriba que operacion desea s, r ,m, d");
+            const op1 = parseInt(window.prompt("Introduzca primer operando:"));
+            const op2 = parseInt(window.prompt("Introduzca segundo operando:"));
+            console.log(`Los resultados son  ${obtenerResultado(op,op1,op2)}`);
+*/
+            //Objetos Javascript
+           
+                const libroAventuras = {
+                    titulo:"El pirata",
+                    color:'amarillo',
+                    autor:'A.J.Perez',
+                    numeroPaginas:110,
+                    editorial:'Deusto',
+                    comprar:function() {console.log(`Libro de Aventuras del autor ${this.autor} comprado`)}
+                };
+
+                const libroHistoria = {
+                    titulo:"Dinosaurios",
+                    color:'azul',
+                    autor:'Martinez',
+                    numeroPaginas:205,
+                    editorial:'Ariel',
+                    comprar:function() {console.log(`Libro de Historia del autor ${this.autor} comprado`)}
+                };
+
+                const libroNaturaleza = {
+                    titulo:"Ranas",
+                    color:' verde',
+                    autor:'Juanito',
+                    numeroPaginas:160,
+                    editorial:'Sagit',
+                    comprar:function() {console.log(`Libro de Naturaleza del autor ${this.autor} comprado`)}
+                };
+
+                const libreria = [libroAventuras,libroHistoria,libroNaturaleza];
+           
+                /*
+                const misLibros = new Array();
+                //Filtrar libros de mas de 150 paginas
+                for (let libro of libreria){
+                    if (libro.numeroPaginas>150){
+                        //To do
+                        misLibros.push(libro);
+                    }
+                }
+                console.log(misLibros);
+*/
+/*
+                biblio.libros = libreria;
+                console.log(biblio.filtrar(150));
+                
+                const libroAutor = biblio.buscar("Juanito")
+                if (libroAutor !== undefined){
+                console.log("LIBRO AUTOR:", libroAutor);
+                }else{
+                    console.log("No se ha encontrado el libro de ese autor");
+                }*/
+                /*
+                //Forrar libros
+                biblio.libros = libreria;
+                biblio.forrarLibros();
+                biblio.listarLibros();
+*/
+                //Sistema de prestamo
+                console.log("PRESTAMO***************************")
+                biblio.libros = libreria;
+                const prestados = new Array(); 
+                const prestado = biblio.prestarLibro("Martinez");
+                prestado !== undefined ? console.log("Titulo del libro prestado: " , prestado.titulo)
+                                        : console.log("Ese libro esta prestado o no disponible");
+                
+                //Inlcuir el linbro prestado en un array de prestados
+                prestados.push(prestado);
+                console.log(prestados);            
+                biblio.listarLibros();
+
+                //SIstema de devolucion
+                console.log("DEVOLUCION***************************")
+                biblio.devolverLibro(prestado);
+                
+                biblio.listarLibros();
+
+
+                /*
+                if (prestado !== undefined){
+                console.log("LIBRO AUTOR:", libroAutor);
+                }else{
+                    console.log("No se ha encontrado el libro de ese autor");
+                /*
+            //Recorrido propiedades de un objeto
+            console.log("Autor: "+ libroAventuras.autor);
+            libroAventuras.editorial = 'Ariel';
+            console.log("Editorial actualizada: " + libroAventuras['editorial']) 
+
+            for (let prop in libroAventuras){
+            console.log(libroAventuras[prop]);
+            }
+
+            libroAventuras.comprar();*/
+            </script>
+            
+    </body>
+</html>

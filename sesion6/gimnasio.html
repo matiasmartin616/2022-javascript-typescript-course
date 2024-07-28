@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gimnasio</title>
+    </head>
+    <body>
+        <form>
+            <legend>Matricula</legend>
+            <p>
+                <label>Nombre:</label>
+                <input type="text" id="nombre">
+            </p>
+            <p>
+                <label>Apellido:</label>
+                <input type="text" id="apellido">
+            </p>
+            <p>
+                <label>DNI:</label>
+                <input type="text" id="dni">
+            </p>
+            <p>
+                <label>Seleccionar Gym:</label>
+                <select id="gyms"></select>
+                    <option></option>
+            </p>
+            <button id="crear_socio">Crear socio</button>
+        </form>
+        <script type="module">
+            import Gimnasio from "./scripts/gimnasio.js";
+            import Socio from "./scripts/socio.js";
+
+            
+            //crear un gimansio de Alicante
+            const alicanteGym = new Gimnasio(35,"Alicante");
+
+            //crear un gimansio en BArcelona
+            const barnaGym = new Gimnasio(45,"Barcelona");
+
+
+            const gyms = new Map();
+            gyms.set("Alicante",alicanteGym);
+            gyms.set("Barcelona",barnaGym);
+
+            function loadGyms(gimnasios){
+                //identificar el elemento select
+                const gymsSelect = document.getElementById("gyms");
+                //por cada gym crear un option con esa info
+                if(gymsSelect){
+                    gimnasios.forEach((valor,clave)=> {
+                        const opt = document.createElement("option");
+                        opt.value = clave;
+                        opt.innerText = clave;
+                        gymsSelect.appendChild(opt);
+                    })
+                }
+            }
+
+
+            function recuperarDatos(){
+                return  {
+                        nombre: document.querySelector("#nombre")?.value,//el ? significa => si existe dame el value
+                        apellido: document.querySelector("#apellido")?.value,
+                        dni: document.querySelector("#dni")?.value,
+                        gym: document.querySelector("#gyms")?.value
+                        };
+            }
+
+            function vincularEventoBoton(){
+                //buscar boton por id y asociar evento click
+                const botonCrearSocio = document.getElementById("crear_socio");
+                //si existe el id del boton...
+                if(botonCrearSocio){
+                    botonCrearSocio.addEventListener("click",(e) => {
+                        e.preventDefault();//con esto se consigue evitar el envio y recarga de un formulario
+                        const data = recuperarDatos();
+                        console.log("DATA:",data);
+                        if (data){
+                            const socio = new Socio(data.dni,data.nombre,data.apellido,"G" + data.dni);
+                            const gym = gyms.get(data.gym);
+                            /*if(gym){
+                                matricularSocio(socio,gym);
+                                gym.listarSocios();
+                            }*/
+                            //Se puede poner tambien...
+                            gym && matricularSocio(socio,gym) && gym.listarSocios();
+                            
+                        }
+                    })
+                }
+            }
+
+            function matricularSocio(socio,gym){
+                let resOp = null;
+                if(gym && socio){
+                    try{
+                    gym.matricular(socio);
+                    resOp = true;
+                    }catch(err){
+                        resOp = false;
+                    }
+                }
+                return resOp;
+            }
+
+            loadGyms(gyms);
+            
+            vincularEventoBoton(alicanteGym);
+
+            //
+            /*
+            const info = {
+                nombre:"Juan",
+                apellido:"Lopez",
+                edad:45
+                };
+
+                console.log(info.nombre);
+                console.log(info.apellido);
+
+                const {nombre,apellido} = info;
+                console.log(nombre);
+                console.log(apellido);
+            */
+            
+        </script>
+    </body>
+</html>

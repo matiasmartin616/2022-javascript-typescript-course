@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON</title>
+    </head>
+    <body>
+    <script type="module">
+        //Pegamos la URL de peticion , es decir donde buscar la informacion:
+        //URL: https://jsonplaceholder.typicode.com/users
+
+        function getUsers(){
+            fetch('https://jsonplaceholder.typicode.com/users')//obtener la info de la URL
+                .then(response => response.json()) //Cuando obtenga la respuesta la voy a convertir en JSON
+                .then(json => console.log(getUsername(json)))//CUando la tenga convertida en JSON la muestro en la consola
+        }
+        
+        function getUsername(people) {
+            people.forEach((user) => {
+                console.log("userName :>> ", user.username);
+            });
+        }        
+
+        getUsers();
+
+    </script>
+    </body>
+</html>

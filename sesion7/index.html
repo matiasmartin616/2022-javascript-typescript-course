@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title> Sesion 7 JS</title>
+    </head>
+    <body>
+        <script type="module">
+            import Data from "./data.js";
+
+            //Promise + callback
+            function tratarUsuarios(users){
+                console.log("Usuarios:",users)
+            }
+
+            const data = new Data("https://jsonplaceholder.typicode.com");
+            data.getUsers((users) => tratarUsuarios(users));
+            
+/*
+            //Only promise
+
+            function tratarUsuarios(users){
+                console.log("Usuarios:",users)
+            }
+
+            const data = new Data("https://jsonplaceholder.typicode.com");
+            data.getUsers()
+            .then(response => response.json())
+            .then(json => tratarUsuarios(json));
+*/
+            //promesas
+            async function obtenerDatos(){
+                return await new Promise((resolve,reject) => {//Resolve: parte que ha ido bien y Reject:la parte de rechazo
+                    resolve([1,2,3,4])
+                })
+            }
+
+            obtenerDatos()
+            .then(function(data){
+                data.forEach(n => console.log(n))   
+            }, function(error){
+                console.log(error);
+            })
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PAREJAS</title>
+    </head>
+    <body>
+    <script type="module" >
+
+    import Alumno from "./scripts/alumno.js";
+
+        let suspendidos = null;
+        let alumnos = null;
+        const NOTA_CORTE = 8;
+        
+        function cargarAlumnos(...als){
+            return als;
+        }
+
+
+        function listarAlumnosSuspendidos(als){
+            als.forEach(al=> console.log("SUSPENSOS:",`Ha suspendido ${al.nombre} ${al.apellido} con una nota de ${al.nota}`))
+        }
+
+        function evaluarAlumnos(als){
+            const suspensos = [];
+            for(const al of als){
+                if(al.nota < NOTA_CORTE){
+                    suspensos.push(al);
+                } 
+        } return suspensos;
+    }
+
+    function evaluarAlumnosv2(als){
+        return als.filter(al=> al.nota<NOTA_CORTE);
+    }
+
+        
+
+        const inigo = new Alumno ("1111111H","Inigo", "Indave",5,8.5);
+        const maria = new Alumno ("2222222H","Maria","Lopez",5,5.5);
+        const andrea = new Alumno ("3333333H","Andrea","Perez",5,6.5);
+
+        inigo.anadirAsignaturas("Lengua");
+        //inigo.listarAsignaturas();
+        maria.anadirAsignaturas("Ingles");
+        //maria.listarAsignaturas();
+
+        alumnos = cargarAlumnos(inigo,maria,andrea);
+        //console.log(alumnos);
+
+        
+        try{
+            suspendidos = evaluarAlumnosv2(alumnos);//con filter 
+            //suspendidos = evaluarAlumnos(alumnos);//sin filter
+            listarAlumnosSuspendidos(suspendidos);
+        }catch(err){
+            console.log(err);
+        } finally{
+            console.log("Evaluacion finalizada")
+        }
+
+
+        
+    </script>
+    </body>
+</html>

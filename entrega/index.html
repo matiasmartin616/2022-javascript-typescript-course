@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Biblioteca JS</title>
+        <link rel="stylesheet" href="styles.css">
+        <script type="module" src="./biblioteca.js"></script>      
+    </head>
+    <body>
+        <header>
+            <h1>Biblioteca</h1>
+            <nav>
+                <ul>
+                    <li href="#">Home</li>
+                    <li href="#" >Books</li>
+                </ul>
+            </nav>
+            <input type="search" placeholder="Search...">
+        </header>
+        <aside>
+            <h3>Buscar:</h3> 
+            <section>
+                <h3>Generos</h3>
+                <hr>
+                <ul>
+                    <li>Todos los libros</li>
+                    <li>Novela</li>
+                    <li>Ensayo</li>
+                    <li>Poesía</li>
+                    <li>Clásicos</li>
+                </ul>
+            </section>
+        </aside>
+        <main>
+        <h2>Libros:</h2>
+        <div class="books">
+            <article class="book1"></article>
+            <article class="book2"></article>
+            <article class="book3"></article>
+            <article class="book4"></article>
+            <article class="book5"></article>
+            <article class="book6"></article>
+        </div>
+        <script type="module">
+            import * as libros from "./biblioteca.js"
+            
+                //Insertar imagen y titulo libro 1
+                const image = document.createElement('img');
+                image.src  = libros.libro1.cover;
+                document.querySelector('.book1').appendChild(image);
+
+                const titulo = document.createElement('h3');
+                titulo.textContent  = libros.libro1.titulo;
+                document.querySelector('.book1').appendChild(titulo);
+
+                const autor = document.createElement('h5');
+                autor.textContent  = libros.libro1.autor;
+                document.querySelector('.book1').appendChild(autor);
+
+
+                //Insertar imagen y titulo libro 2
+                const image2 = document.createElement('img');
+                image2.src  = libros.libro2.cover;
+                document.querySelector('.book2').appendChild(image2);
+
+                const titulo2 = document.createElement('h3');
+                titulo2.textContent  = libros.libro2.titulo;
+                document.querySelector('.book2').appendChild(titulo2);
+
+                const autor2 = document.createElement('h5');
+                autor2.textContent  = libros.libro2.autor;
+                document.querySelector('.book2').appendChild(autor2);
+
+
+                //Insertar imagen y titulo libro 3
+                const image3 = document.createElement('img');
+                image3.src  = libros.libro3.cover;
+                document.querySelector('.book3').appendChild(image3);
+
+                const titulo3 = document.createElement('h3');
+                titulo3.textContent  = libros.libro3.titulo;
+                document.querySelector('.book3').appendChild(titulo3);
+
+                const autor3 = document.createElement('h5');
+                autor3.textContent  = libros.libro3.autor;
+                document.querySelector('.book3').appendChild(autor3);
+
+
+                //Insertar imagen y titulo libro 4
+                const image4 = document.createElement('img');
+                image4.src  = libros.libro4.cover;
+                document.querySelector('.book4').appendChild(image4);
+
+                const titulo4 = document.createElement('h3');
+                titulo4.textContent  = libros.libro4.titulo;
+                document.querySelector('.book4').appendChild(titulo4);
+
+                const autor4 = document.createElement('h5');
+                autor4.textContent  = libros.libro4.autor;
+                document.querySelector('.book4').appendChild(autor4);
+
+
+                //Insertar imagen y titulo libro 5
+                const image5 = document.createElement('img');
+                image5.src  = libros.libro5.cover;
+                document.querySelector('.book5').appendChild(image5);
+
+                const titulo5 = document.createElement('h3');
+                titulo5.textContent  = libros.libro5.titulo;
+                document.querySelector('.book5').appendChild(titulo5);
+
+                const autor5 = document.createElement('h5');
+                autor5.textContent  = libros.libro5.autor;
+                document.querySelector('.book5').appendChild(autor5);
+
+                //Insertar imagen y titulo libro 6
+                const image6 = document.createElement('img');
+                image6.src  = libros.libro6.cover;
+                document.querySelector('.book6').appendChild(image6);
+
+                const titulo6 = document.createElement('h3');
+                titulo6.textContent  = libros.libro6.titulo;
+                document.querySelector('.book6').appendChild(titulo6);
+
+                const autor6 = document.createElement('h5');
+                autor6.textContent  = libros.libro6.autor;
+                document.querySelector('.book6').appendChild(autor6);
+
+                const libreria = [libro1,libro2,libro3,libro4,libro5,libro6];
+        </script>  
+    </body>
+</html>

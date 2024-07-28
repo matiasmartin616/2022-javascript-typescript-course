@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seion5</title>
+    </head>
+    <body>
+    <script type="module" >
+
+    import Coche from "./scripts/coche.js";
+    import Propietario from "./scripts/propietario.js";
+
+    const inigo = new Propietario("Inigo Indave");
+    const cocheInigo = new Coche("Seat","Azteca","Diesel",inigo);
+    console.log(cocheInigo);
+
+    cocheInigo.arrancar();
+    cocheInigo.parar();
+    
+    console.log(cocheInigo.obtenerPropietario());
+
+    const propietario = cocheInigo.obtenerPropietario();
+    console.log(`El propietario del coche es ${propietario.nombre}`);
+
+    propietario.nombre = "Fernando";
+    console.log(cocheInigo);
+
+    
+    </script>
+    </body>
+</html>

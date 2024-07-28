@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .map {
+              height: 400px;
+              width: 100%;
+            }
+          </style>
+        <title>PAREJAS</title>
+        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+    </head>
+    <body>
+        <h2>My Map</h2>
+        <div id="map" class="map"></div>
+    <script type="module">
+
+
+        //Pegamos la URL de peticion , es decir donde buscar la informacion:
+        //URL: https://jsonplaceholder.typicode.com/users
+
+        /*Descargar los usuarios (10) de la plataforma ‘Jsonplaceholder’ y crear un diccionario clientes
+        que tenga por clave ‘username’ y por valor el objeto anidado ‘geo’ (*).
+        (*) geo: {
+        lat: "-37.3159",
+        lng: "81.1496"
+        }
+        */
+       
+        async function getUsers(){
+            await fetch('https://jsonplaceholder.typicode.com/users')//obtener la info de la URL
+                .then(response => response.json()) //Cuando obtenga la respuesta la voy a convertir en JSON
+                .then(json => (getGeo(json)))//CUando la tenga convertida en JSON la muestro en la consola
+            }
+        
+        function getGeo(people) {
+            people.forEach((user) => {
+                console.log("Nombre:",user.username);
+                console.log(user.address.geo.lat);
+                console.log(user.address.geo.lng);
+                console.log("--------------------");
+            });
+        } 
+        
+
+        /*
+        async function obtenerUsers() {
+        await fetch("https://jsonplaceholder.typicode.com/users%22)
+          .then((response) => response.json())
+          .then((json) => (arrayUsers = json));
+        console.log(arrayUsers);
+
+        const mapa = new Map();
+        arrayUsers.forEach((element) => {
+          mapa.set(element.username, element.address.geo);
+          console.log([...mapa.entries()]);
+        });
+
+        return mapa;
+      }
+        */
+    </script>
+    <script type="text/javascript">
+        var map = new ol.Map({
+          target: 'map',
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM()
+            })
+          ],
+          view: new ol.View({
+            center: ol.proj.fromLonLat(([-37.3159,81.1496])),
+            zoom: 4
+          })
+
+        });
+      </script>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+
+html {
+    background: #f7f7f7;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background: white;
+    margin: 0 auto;
+    color: rgb(49, 46, 46);
+    text-align: center;
+}
+
+header, footer {
+    background: #333a40;
+    color: white;
+    padding: 20px 10px;
+}
+
+
+main h2{
+    width: 100%;
+}
+
+input[type="search"]{
+    width: 100%;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+    line-height: 30px;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    color: #0e69e9;
+}
+
+header li{
+    display: inline;/*Esto hace que lo elementos li se pongan horizontales*/
+}
+
+header h1, nav{
+    display: inline-block;/*Esto permite modificar ambos h1 y nav por separado pero que esten a la vez inline*/
+}
+
+header h1{
+    width: 100%;
+}
+
+.books{
+    box-sizing: border-box;
+    border: 1px solid grey;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+    min-width: 200px;                /* Muy importante el uso de width y min-width para el responsive*/
+    text-align: center;    
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;    
+    justify-content: center;   
+}
+
+input[type="search"]{
+    width: 25%;
+}
+img{
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+
+article{
+    padding: 5px;
+}
+
+article img{
+    width: 80%;
+    height:80%;
+}
+.button{
+    padding: 10px;
+    display: inline-block;
+}
+
+.button:last-of-type{ /* EL ultimo elemento del tipo boton tiene una caracteristica determinada. */
+    background-color: #0e6969;
+    color: white;
+}
+
+h5{
+    margin: 10px;
+}
+@media (min-width:800px){
+    input[type="search"]{
+        width: 25%;
+    }
+    img{
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (min-width:1000px){
+    body{
+        text-align: left;
+    }
+    header h1{
+        width: 40%;
+    }
+    main{
+        width:68%;
+        display: inline-block;
+        padding: 10px;
+    }
+    aside{
+        width: 27%;
+        display: inline-block;
+        padding: 10px;
+        vertical-align: top;
+    }
+    
+    input[type="search"]{
+        width: 25%;
+    }
+    img{
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media(min-width:1200px){
+    body{
+        max-width: 80vw;/* vw son dimensiones de la ventana*/
+    }
+    .books{
+        grid-template-columns: auto auto auto;
+        gap: 20px; 
+        width: 100%;
+    }
+    input[type="search"]{
+        width: 25%;
+    }
+    img{
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+}
